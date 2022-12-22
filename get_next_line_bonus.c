@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 13:08:41 by ktunchar          #+#    #+#             */
-/*   Updated: 2022/12/22 22:09:57 by ktunchar         ###   ########.fr       */
+/*   Updated: 2022/12/22 22:33:41 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //TODO >> Check protect
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {
@@ -85,31 +85,15 @@ char	*read_line(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str;
+	static char	*str[OPEN_MAX + 3];
 	char		*line;
 
 	line = NULL;
-	str = read_line(fd, str);
-	if (str)
+	str[fd] = read_line(fd, str[fd]);
+	if (str[fd])
 	{
-		line = get_only_line(str);
-		str = cut_line(str);
+		line = get_only_line(str[fd]);
+		str[fd] = cut_line(str[fd]);
 	}
 	return (line);
 }
-
-// int	main()
-// {
-// 	int	fd;
-
-// //	char *a = "012345\nab";
-
-// 	fd = open("gnlTester/files/41_no_nl",O_RDONLY);
-
-// 	//printf("strlen_nl = %zu\n",ft_strlen_nl(a));
-// 	//printf("strlen = %zu\n",ft_strlen(a));
-// 	printf("line 1:%s|",get_next_line(fd));
-// 	// printf("line 2:%s|",get_next_line(fd));
-// 	// printf("line 3 : %s",get_next_line(fd));
-// 	// printf("line 4 : %s",get_next_line(fd));
-// }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:01:16 by ktunchar          #+#    #+#             */
-/*   Updated: 2022/12/22 22:19:34 by ktunchar         ###   ########.fr       */
+/*   Updated: 2022/12/22 22:19:18 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stddef.h>
+# include <limits.h>
 # include <stdlib.h>
 
 char	*ft_strchr(const char *s, int c);
