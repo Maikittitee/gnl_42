@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 13:08:41 by ktunchar          #+#    #+#             */
-/*   Updated: 2022/12/18 00:03:11 by ktunchar         ###   ########.fr       */
+/*   Updated: 2022/12/22 21:39:57 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,26 @@
 
 #include "get_next_line.h"
 
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*str;
+
+	i = 0;
+	str = b;
+	while (i < len)
+	{
+		str[i] = c;
+		i++;
+	}
+	return (str);
+}
+
 char	*cut_line(char	*str)
 {
-	int	len_nl;
-	int	len;
+	int		len_nl;
+	int		len;
 	char	*temp;
 
 	len_nl = ft_strlen_nl(str);
@@ -40,44 +56,38 @@ char	*get_only_line(char *str)
 {
 	char	*line;
 
-	if (ft_strchr(str,'\n'))
-	{
+	if (ft_strchr(str, '\n'))
 		line = ft_strdup_nl(str);
-	}
-	else 
+	else
 		line = ft_strdup(str);
-
 	return (line);
 }
 
-char *read_line(int	fd, char *str)
+char	*read_line(int fd, char *str)
 {
-	int	can_read;
+	int		can_read;
 	char	*buffer;
 
 	can_read = 8000;
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	while (can_read)
 	{
-		ft_bzero(buffer, BUFFER_SIZE + 1);
+		ft_memset(buffer, 0, BUFFER_SIZE + 1);
 		can_read = read(fd, buffer, BUFFER_SIZE);
 		if (can_read <= 0)
-			break;
+			break ;
 		str = ft_strjoin_free(str, buffer);
-	
-
 		if (ft_strchr(buffer, '\n'))
-			break;
-		
+			break ;
 	}
 	free(buffer);
 	return (str);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-    static char *str;
-	char *line;
+	static char	*str;
+	char		*line;
 
 	line = NULL;
 	str = read_line(fd, str);
@@ -87,7 +97,6 @@ char *get_next_line(int fd)
 		str = cut_line(str);
 	}
 	return (line);
-
 }
 
 // int	main()

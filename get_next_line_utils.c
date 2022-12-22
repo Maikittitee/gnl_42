@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 14:49:14 by ktunchar          #+#    #+#             */
-/*   Updated: 2022/12/14 01:23:03 by ktunchar         ###   ########.fr       */
+/*   Updated: 2022/12/22 21:41:51 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*ft_strchr(const char *s, int c)
 
 	i = 0;
 	str = (char *)s;
-
 	while (str[i] != (char)c && str[i])
 		i++;
 	if (str[i] == (char)c)
@@ -32,10 +31,10 @@ char	*ft_strchr(const char *s, int c)
 
 char	*ft_strjoin_free(char *s1, char *s2)
 {
-	char	*buffer;
-	int		i;
-	int		j;
-	static int count;
+	char		*buffer;
+	int			i;
+	int			j;
+	static int	count;
 
 	count++;
 	if (!s2)
@@ -46,12 +45,8 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	i = 0;
 	j = 0;
 	if (s1)
-	{
 		while (s1[j])
-		{
 			buffer[i++] = s1[j++];
-		}
-	}
 	j = 0;
 	while (s2[j])
 	{
@@ -63,25 +58,6 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (buffer);
 }
 
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t			i;
-	unsigned char	*str;
-
-	i = 0;
-	str = b;
-	while (i < len)
-	{
-		str[i] = c;
-		i++;
-	}
-	return (str);
-}
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
@@ -110,17 +86,6 @@ size_t	ft_strlen_nl(const char *s)
 	return (i);
 }
 
-void	ft_buffercpy(char *dst, const char *src)
-{
-    while (*src)
-    {
-        *dst = *src;
-        src++;
-        dst++;
-    }
-    *dst = 0;
-}
-
 char	*ft_strdup_nl(const char *s1)
 {
 	char	*buffer;
@@ -134,7 +99,7 @@ char	*ft_strdup_nl(const char *s1)
 	{
 		buffer[i] = s1[i];
 		if (s1[i] == '\n')
-			break;
+			break ;
 		i++;
 	}
 	i++;
@@ -159,4 +124,3 @@ char	*ft_strdup(const char *s1)
 	buffer[i] = '\0';
 	return (buffer);
 }
-
